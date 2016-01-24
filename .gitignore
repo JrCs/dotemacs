@@ -1,0 +1,10 @@
+.DS_Store
+/.emacs.desktop*
+/auto-save-list/
+/history
+/ido.last
+/tramp
+/recentf
+/places
+/elpa/archives/
+/elpa/*readme.txt
