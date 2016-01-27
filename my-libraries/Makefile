@@ -5,7 +5,7 @@ RM		    = -rm -f
 
 AUTOLOAD_FILE = my-libraries-loaddefs.el
 
-LISP_FILES	= $(filter-out $(AUTOLOAD_FILE), $(wildcard *.el))
+LISP_FILES	= $(filter-out $(AUTOLOAD_FILE) cobol-mode.el, $(wildcard *.el))
 CLEAN_FILES	= .\\\#* \\\#* .*~ *~ *.aux *.cp *.cps *.diff *.dvi *.elc *.fn *.fns *.html *.info *.ky *.log *.pg *.tmp *.toc *.tp *.vr *.vrs
 
 ifeq ($(EMACS_INFO), emacs)

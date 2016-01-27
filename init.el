@@ -6,8 +6,21 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file)
 
-;; Modify load path
-(add-to-list 'load-path (expand-file-name (concat user-emacs-directory "my-libraries/")))
+;; Load modules in my-libraries
+(defvar my-libraries-dir (expand-file-name (concat user-emacs-directory "my-libraries/")))
+(add-to-list 'load-path my-libraries-dir)
+;; Compile the files and create the autoload file if not exists
+(if
+	(not (file-exists-p (concat my-libraries-dir "my-libraries-loaddefs.el")))
+	(call-process "make"))
+(require 'my-libraries-loaddefs)
+;;	(shell-command "make" nil nil))
+
+;;(load "initsplit")
+;;(custom-set-variables
+;; '(xxxx
+;;   (("user-" "ok" t)
+;;		   )))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package configuration
