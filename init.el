@@ -39,12 +39,6 @@
 
 (package-initialize)
 
-;;;;;;;;;;;;;
-;; Load Theme
-(load-theme 'jrcs)
-;(add-to-list 'default-frame-alist
-;             '(font . "Inconsolata-13"))
-
 ;; Customize Plus
 (require 'cus-edit+)
 (customize-toggle-outside-change-updates 99)
@@ -68,6 +62,13 @@
 (require 'ido-completing-read+)
 (ido-mode t)
 (ido-everywhere 1)
+
+;;;;;;;;;;
+;; Recentf
+(require 'recentf)
+;; it's better to disable auto-cleanup when using tramp
+(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+(recentf-mode t)
 
 ;;;;;;;;;;
 ;; IBuffer
@@ -121,19 +122,13 @@
 (autoload 'perlcritic-mode   "perlcritic" "" t)
 
 ;;;;;;;;;;;;
-;; RPM Spec
-(autoload 'rpm-spec-mode "rpm-spec-mode.el" "RPM spec mode." t)
-(setq auto-mode-alist
-      (append '(("\\.spec" . rpm-spec-mode)) auto-mode-alist))
-
-;;;;;;;;;;;;
 ;; FlyCheck
 ;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;;;;;;;;;;;
 ;; GO
 (add-hook 'before-save-hook #'gofmt-before-save)
-(require 'golint)
+;;(require 'golint)
 
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;; Unix <-> Dos
