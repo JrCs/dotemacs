@@ -1,12 +1,13 @@
-EMACS_INFO  = emacs
+EMACS_INFO  := emacs
 
-EMACS		= emacs
-RM		    = -rm -f
+EMACS       := emacs
+RM          := -rm -f
 
-AUTOLOAD_FILE = my-libraries-loaddefs.el
+AUTOLOAD_FILE := my-libraries-loaddefs.el
 
-LISP_FILES	= $(filter-out $(AUTOLOAD_FILE) cobol-mode.el, $(wildcard *.el))
-CLEAN_FILES	= .\\\#* \\\#* .*~ *~ *.aux *.cp *.cps *.diff *.dvi *.elc *.fn *.fns *.html *.info *.ky *.log *.pg *.tmp *.toc *.tp *.vr *.vrs
+LISP_FILES	:= $(filter-out $(AUTOLOAD_FILE), $(wildcard *.el))
+COMPILE_LISP_FILES := $(filter-out cobol-mode.el, $(LISP_FILES))
+CLEAN_FILES	:= .\\\#* \\\#* .*~ *~ *.aux *.cp *.cps *.diff *.dvi *.elc *.fn *.fns *.html *.info *.ky *.log *.pg *.tmp *.toc *.tp *.vr *.vrs
 
 ifeq ($(EMACS_INFO), emacs)
 #  EM = $(EMACS) --no-site-file -batch
@@ -19,7 +20,7 @@ endif
 
 .SUFFIXES: .elc .el
 
-all: autoloads $(addsuffix .elc, $(basename $(LISP_FILES)))
+all: autoloads $(addsuffix .elc, $(basename $(COMPILE_LISP_FILES)))
 
 autoloads: $(AUTOLOAD_FILE)
 
