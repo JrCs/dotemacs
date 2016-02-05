@@ -1,4 +1,5 @@
 .DS_Store
+/ac-comphist.dat
 /.emacs.desktop*
 /auto-save-list/
 /history
