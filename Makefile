@@ -18,7 +18,6 @@ $(DISTCLEANDIRS):
 	$(MAKE) -C $(@:distclean-%=%) distclean
 
 local-clean:
-	@find . -name '*~' -print0 | xargs -0 rm -f
 	$(RM) $(CLEAN_FILES)
 
 clean: local-clean $(CLEANDIRS)

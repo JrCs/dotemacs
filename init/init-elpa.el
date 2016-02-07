@@ -42,6 +42,10 @@
         (package-refresh-contents)
         (require-package package min-version t)))))
 
+(require-package 'use-package)
+
+(defvar use-package-verbose t)
+(require 'use-package)
 
 ;;(require-package 'fastnav)
 ;;(require-package 'pretty-symbols-mode)
@@ -64,7 +68,6 @@
 ;;(require-package 'flymake-cursor)
 ;;(require-package 'maxframe)
 ;;(require-package 'ace-jump-mode)
-
 
 (provide 'init-elpa)
 ;;; init-elpa.el ends here
