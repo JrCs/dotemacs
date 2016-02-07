@@ -85,7 +85,6 @@
         (set-buffer-modified-p nil)))))
 
 
-
 (defmacro with-selected-frame (frame &rest forms)
   (let ((prev-frame (gensym))
         (new-frame (gensym)))
@@ -96,6 +95,30 @@
          (unwind-protect
              (progn ,@forms)
            (select-frame ,prev-frame))))))
+
+;;----------------------------------------------------------------------------
+;; Display face information about char under cursor
+;;----------------------------------------------------------------------------
+(defun what-face()
+  (interactive)
+  (what-cursor-position t))
+
+
+;;----------------------------------------------------------------------------
+;; Convert buffer Unix <-> Dos
+;;----------------------------------------------------------------------------
+(defun dos-unix ()
+  "Convert buffer from DOS to Unix."
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
+
+(defun unix-dos ()
+  "Convert buffer from Unix to DOS."
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\n" nil t) (replace-match "\r\n")))
+
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

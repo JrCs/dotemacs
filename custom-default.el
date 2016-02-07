@@ -15,8 +15,6 @@
  '(font-use-system-font nil)
  '(ibuffer-expert t)
  '(ibuffer-show-empty-filter-groups nil)
- '(ido-enable-flex-matching t)
- '(recentf-mode t)
  '(save-place t nil (saveplace))
  '(savehist-mode t)
  '(show-paren-mode t)

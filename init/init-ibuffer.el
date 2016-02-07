@@ -24,59 +24,55 @@
 
 ;;; Code:
 
-(require-package 'ibuffer-vc)
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer)
+  :functions ibuffer-switch-to-saved-filter-groups
+  :init
+  (add-hook 'ibuffer-mode-hook
+            #'(lambda ()
+                (ibuffer-switch-to-saved-filter-groups "mine")))
+  :config
+  ;; Use human readable Size column instead of original one
+  (define-ibuffer-column size-h
+	(:name "Size" :inline t)
+	(cond
+	 ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+	 ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+	 (t (format "%8d" (buffer-size)))))
 
-(defun ibuffer-set-up-preferred-filters ()
-  (ibuffer-vc-set-filter-groups-by-vc-root)
-  (ibuffer-do-sort-by-filename/process))
+  ;; Modify the default ibuffer-formats
+  (setq
+   ibuffer-formats '((mark modified read-only vc-status-mini " "
+						   (name 18 18 :left :elide)
+						   " "
+						   (size-h 9 -1 :right)
+						   " "
+						   (mode 16 16 :left :elide)
+						   " "
+						   (vc-status 16 16 :left)
+						   " "
+						   filename-and-process))
 
-(add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
+   ibuffer-saved-filter-groups '(("mine"
+								  ("Perl" (mode . perl-mode))
+								  ("GO"   (mode . go-mode))
+								  ("emacs-config" (or (filename . ".emacs.d")
+													  (filename . "emacs-config")))
+								  ("Help" (or (name . "\*Help\*")
+											  (name . "\*Apropos\*")
+											  (name . "\*info\*")))))
 
+   ibuffer-filter-group-name-face 'font-lock-doc-face)
 
-(eval-after-load 'ibuffer
-  '(progn
-     ;; Use human readable Size column instead of original one
-     (define-ibuffer-column size-h
-       (:name "Size" :inline t)
-       (cond
-        ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
-        ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
-        (t (format "%8d" (buffer-size)))))))
+  (setq-default
+   ibuffer-expert t
+   ibuffer-show-empty-filter-groups nil)
 
-;; Explicitly require ibuffer-vc to get its column definitions, which
-;; can't be autoloaded
-(eval-after-load 'ibuffer
-  '(require 'ibuffer-vc))
-
-;; Modify the default ibuffer-formats
-(setq ibuffer-formats
-      '((mark modified read-only vc-status-mini " "
-              (name 18 18 :left :elide)
-              " "
-              (size-h 9 -1 :right)
-              " "
-              (mode 16 16 :left :elide)
-              " "
-              (vc-status 16 16 :left)
-              " "
-              filename-and-process)))
-
-(setq ibuffer-saved-filter-groups
-      '(("home"
-		 ("Perl" (mode . perl-mode))
-		 ("GO"   (mode . go-mode))
-		 ("emacs-config" (or (filename . ".emacs.d")
-							 (filename . "emacs-config")))
-		 ("Help" (or (name . "\*Help\*")
-					 (name . "\*Apropos\*")
-					 (name . "\*info\*"))))))
-(add-hook 'ibuffer-mode-hook
-		  '(lambda ()
-			 (ibuffer-switch-to-saved-filter-groups "home")))
-
-(setq ibuffer-filter-group-name-face 'font-lock-doc-face)
-
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+  (use-package ibuffer-vc
+	:ensure t
+	:preface
+	(eval-when-compile
+	  (defun vc-darcs-find-root() t))))
 
 (provide 'init-ibuffer)
 ;;; init-ibuffer.el ends here

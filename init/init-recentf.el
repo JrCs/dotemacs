@@ -24,21 +24,37 @@
 
 ;;; Code:
 
-;; it's better to disable auto-cleanup when using tramp
-(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+(use-package recentf
+  :defer 10
+  :commands (recentf-mode
+             recentf-add-file
+             recentf-apply-filename-handlers
+			 recentf-ido-find-file)
+  :bind ("C-x C-r" . recentf-ido-find-file)
+  :preface
+  (defun recentf-add-dired-directory ()
+    (if (and dired-directory
+             (file-directory-p dired-directory)
+             (not (string= "/" dired-directory)))
+        (let ((last-idx (1- (length dired-directory))))
+          (recentf-add-file
+           (if (= ?/ (aref dired-directory last-idx))
+               (substring dired-directory 0 last-idx)
+             dired-directory)))))
+  :init
+  (add-hook 'dired-mode-hook 'recentf-add-dired-directory)
 
-(recentf-mode t)
+  :config
+  (defun recentf-ido-find-file ()
+	"Find a recent file using Ido."
+	(interactive)
+	(let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+	  (when file
+		(find-file file))))
 
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-	(when file
-	  (find-file file))))
-(global-set-key (kbd "C-x C-r") 'recentf-ido-find-file)
-
-(setq recentf-max-saved-items 300
-      recentf-exclude '("/sudo:"))
+  (setq-default
+   recentf-max-saved-items 200)
+  (recentf-mode 1))
 
 (provide 'init-recentf)
 ;;; init-recentf.el ends here

@@ -1,11 +1,12 @@
 .DS_Store
+*~
 /ac-comphist.dat
 /.emacs.desktop*
 /auto-save-list/
+/custom.el
+/elpa/
 /history
 /ido.last
 /tramp
 /recentf
 /places
-/elpa/archives/
-/elpa/*readme.txt
