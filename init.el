@@ -76,6 +76,7 @@
 (require 'init-perl-mode)
 (require 'init-javascript)
 (require 'init-go)
+(require 'init-rpmspec-mode)
 
 (require 'init-edition)
 (require 'init-autoinsert)
