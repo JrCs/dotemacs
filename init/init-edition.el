@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Yves Blusseau
 
 ;; Author: Yves Blusseau <90z7oey02@sneakemail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,12 +20,12 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 ;;----------------------------------------------------------------------------
-;; Delete Selection mode 
+;; Delete Selection mode
 ;;----------------------------------------------------------------------------
 ;; text inserted while the region is active will replace the region contents.
 (use-package delsel
@@ -33,7 +33,7 @@
 
 
 ;;----------------------------------------------------------------------------
-;; Electric Pair mode 
+;; Electric Pair mode
 ;;----------------------------------------------------------------------------
 ;; Electric Pair mode is a global minor mode.  When enabled, typing
 ;; an open parenthesis automatically inserts the corresponding
@@ -42,7 +42,7 @@
   :init (electric-pair-mode t))
 
 ;;----------------------------------------------------------------------------
-;; Parens mode 
+;; Parens mode
 ;;----------------------------------------------------------------------------
 ;; Visualization of matching parens
 (use-package paren
@@ -61,6 +61,20 @@
   (global-set-key (kbd "<C-f15>") 'redo)
   (global-set-key (kbd "<C-pause>") 'redo)
   )
+
+;;----------------------------------------------------------------------------
+;; Copy, Cut & Paste
+;;----------------------------------------------------------------------------
+(use-package xclip :ensure t)
+
+;; Use the kill-ring for copy/paste
+(setq mouse-drag-copy-region t)
+(global-set-key [mouse-2] 'mouse-yank-at-click)
+
+(defun yank-pop-forwards (arg)
+  (interactive "p")
+  (yank-pop (- arg)))
+(global-set-key "\M-Y" 'yank-pop-forwards) ; M-Y (Meta-Shift-Y)
 
 (provide 'init-edition)
 ;;; init-edition.el ends here

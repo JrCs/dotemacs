@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Yves Blusseau
 
 ;; Author: Yves Blusseau <90z7oey02@sneakemail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -119,6 +119,10 @@
   (goto-char (point-min))
   (while (search-forward "\n" nil t) (replace-match "\r\n")))
 
+;; Emacs key binding alias
+(defmacro defkbalias (new old)
+  `(define-key (current-global-map) ,new
+     (lookup-key (current-global-map) ,old)))
 
 (provide 'init-utils)
 ;;; init-utils.el ends here

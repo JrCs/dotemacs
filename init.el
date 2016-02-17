@@ -80,6 +80,7 @@
 (require 'init-edition)
 (require 'init-autoinsert)
 (require 'init-indent)
+(require 'init-tramp)
 
 (require 'init-theme)
 (require 'init-fonts)
@@ -87,32 +88,36 @@
 (require 'init-gui-frames)
 (require 'init-session)
 
+
+;;----------------------------------------------------------------------------
+;; Misc
+;;----------------------------------------------------------------------------
+(defalias 'yes-or-no-p 'y-or-n-p) ; y or n is enough
+
+
 ;; ;; Customize Plus
 ;; (require 'cus-edit+)
 ;; (customize-toggle-outside-change-updates 99)
 ;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Whitespace
+;;----------------------------------------------------------------------------
+;; Whitespace mode
+;;----------------------------------------------------------------------------
 (global-set-key "\C-cw" 'whitespace-mode)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Mouse Avoidance
+
+;;----------------------------------------------------------------------------
+;; Mouse
+;;----------------------------------------------------------------------------
 (mouse-avoidance-mode 'animate)
 
-;;;;;;;;;;;;;;;;;;;;;;
-;; Custom Key Bindings
+
+;;----------------------------------------------------------------------------
+;;Custom key bindings
+;;----------------------------------------------------------------------------
 (global-set-key (kbd "<C-tab>") 'switch-to-previous-buffer)
 
 (global-set-key (kbd "<f5>") 'font-lock-fontify-buffer)
-
-(global-set-key (kbd "<mouse-8>") 'mouse-yank-primary)
-(global-set-key (kbd "<M-mouse-8>") 'mouse-yank-secondary)
-(global-set-key (kbd "<C-down-mouse-8>") 'facemenu-menu)
-(global-set-key [vertical-line C-mouse-8] 'mouse-split-window-vertically)
-(global-set-key [vertical-scroll-bar C-mouse-8] 'mouse-split-window-vertically)
-(global-set-key [mode-line C-mouse-8] 'mouse-split-window-horizontally)
-(global-set-key [mode-line mouse-8] 'mouse-delete-other-windows)
 
 (bind-keys :prefix-map my-lisp-devel-map
 		   :prefix "C-c e"
@@ -128,6 +133,21 @@
 		   ("s" . switch-to-scratch-buffer)
 		   ("z" . byte-recompile-directory))
 
+(when *is-a-mac*
+  (setq mac-option-key-is-meta nil)
+  (setq mac-command-key-is-meta t)
+  (setq mac-command-modifier 'meta)
+  (setq mac-option-modifier nil)
+  (turn-on-xclip)
+  (defkbalias (kbd "<mouse-8>") (kbd "<mouse-2>"))
+  (global-set-key (kbd "<M-mouse-8>") 'mouse-yank-primary)
+  (defkbalias (kbd "<C-down-mouse-8>") (kbd "<C-down-mouse-2>"))
+  (defkbalias [vertical-line C-mouse-8] [vertical-line C-mouse-2])
+  (defkbalias [vertical-scroll-bar C-mouse-8] [vertical-scroll-bar C-mouse-2])
+  (defkbalias [mode-line C-mouse-8] [mode-line C-mouse-2])
+  (defkbalias [mode-line mouse-8] [mode-line mouse-2]))
+
+
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
 ;;----------------------------------------------------------------------------
@@ -135,12 +155,14 @@
 (unless (server-running-p)
   (server-start))
 
+
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
 (setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
 ;;(setq-default custom-file (concat user-emacs-directory "custom-" (user-login-name) ".el")
 (load custom-file)
+
 
 ;;----------------------------------------------------------------------------
 ;; Locales (setting them earlier in this file doesn't work in X)
