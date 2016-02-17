@@ -1,4 +1,4 @@
-;;; init-rpmspec-mode.el ---                         -*- lexical-binding: t; -*-
+;;; init-other-modes.el ---                         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016  Yves Blusseau
 
@@ -24,10 +24,28 @@
 
 ;;; Code:
 
+;;----------------------------------------------------------------------------
+;; RPM Spec mode
+;;----------------------------------------------------------------------------
 (use-package rpm-spec-mode
   :ensure t
   :mode ("\\.spec\\(\\.in\\)?$" . rpm-spec-mode))
 
 
-(provide 'init-rpmspec-mode)
-;;; init-rpmspec-mode.el ends here
+;;----------------------------------------------------------------------------
+;; Dockerfile mode
+;;----------------------------------------------------------------------------
+(use-package dockerfile-mode :ensure t)
+
+
+;;----------------------------------------------------------------------------
+;; Markdown mode
+;;----------------------------------------------------------------------------
+(use-package markdown-mode
+  :ensure t
+  :config
+  (use-package markdown-preview-eww :ensure t))
+
+
+(provide 'init-other-modes)
+;;; init-other-modes.el ends here
