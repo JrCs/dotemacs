@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Yves Blusseau
 
 ;; Author: Yves Blusseau <90z7oey02@sneakemail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,13 +20,14 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 (use-package rpm-spec-mode
   :ensure t
   :mode ("\\.spec\\(\\.in\\)?$" . rpm-spec-mode))
+
 
 (provide 'init-rpmspec-mode)
 ;;; init-rpmspec-mode.el ends here
