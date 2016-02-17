@@ -1,4 +1,4 @@
-;;; init-flycheck.el --- Setup for flycheck          -*- lexical-binding: t; -*-
+;;; init-rpmspec-mode.el ---                         -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2016  Yves Blusseau
 
@@ -24,26 +24,9 @@
 
 ;;; Code:
 
-(use-package flycheck
+(use-package rpm-spec-mode
   :ensure t
-  :defer 5
-  :bind ( "\C-c!t" . flycheck-mode )
-  :config
-  ;; lisp (disable emacs-lisp-checkdoc)
-  (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+  :mode ("\\.spec\\(\\.in\\)?$" . rpm-spec-mode))
 
-  (defun force-flycheck-mode()
-	(when (not flycheck-mode)
-	  (flycheck-mode 1)))
-  (global-set-key "\M-p" '(lambda()
-							(interactive)
-							(progn (force-flycheck-mode)
-								   (flycheck-previous-error))))
-  (global-set-key "\M-n" '(lambda()
-							(interactive)
-							(progn (force-flycheck-mode)
-								   (flycheck-next-error)))))
-
-
-(provide 'init-flycheck)
-;;; init-flycheck.el ends here
+(provide 'init-rpmspec-mode)
+;;; init-rpmspec-mode.el ends here

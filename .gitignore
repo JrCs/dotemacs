@@ -1,12 +1,13 @@
-.DS_Store
 *~
-/ac-comphist.dat
+.DS_Store
 /.emacs.desktop*
+/ac-comphist.dat
 /auto-save-list/
 /custom.el
 /elpa/
 /history
 /ido.last
-/tramp
-/recentf
+/init/init-preload-local.el
 /places
+/recentf
+/tramp

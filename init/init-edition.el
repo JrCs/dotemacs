@@ -76,5 +76,17 @@
   (yank-pop (- arg)))
 (global-set-key "\M-Y" 'yank-pop-forwards) ; M-Y (Meta-Shift-Y)
 
+
+;;----------------------------------------------------------------------------
+;; Hungry Delete mode
+;;----------------------------------------------------------------------------
+;; Remove consecutive white spaces
+(use-package hungry-delete
+  :ensure t
+  :init
+  (global-hungry-delete-mode))
+
+(global-set-key "\C-t" #'transpose-lines)
+
 (provide 'init-edition)
 ;;; init-edition.el ends here

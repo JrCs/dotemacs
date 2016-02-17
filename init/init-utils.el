@@ -124,5 +124,6 @@
   `(define-key (current-global-map) ,new
      (lookup-key (current-global-map) ,old)))
 
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

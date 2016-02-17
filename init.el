@@ -46,6 +46,7 @@
 				  (message "init completed in %.2fms"
 						   (sanityinc/time-subtract-millis after-init-time before-init-time))))))
 
+
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
@@ -54,10 +55,12 @@
 (require 'init-utils)
 (require 'init-exec-path) ;; Set up $PATH
 
+
 ;;----------------------------------------------------------------------------
 ;; Allow users to provide an optional "init-preload-local.el"
 ;;----------------------------------------------------------------------------
 (require 'init-preload-local nil t)
+
 
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
@@ -76,6 +79,7 @@
 (require 'init-perl-mode)
 (require 'init-javascript)
 (require 'init-go)
+(require 'init-rpmspec-mode)
 
 (require 'init-edition)
 (require 'init-autoinsert)
@@ -84,6 +88,7 @@
 
 (require 'init-theme)
 (require 'init-fonts)
+(require 'init-modeline)
 (require 'init-windows)
 (require 'init-gui-frames)
 (require 'init-session)
@@ -92,7 +97,7 @@
 ;;----------------------------------------------------------------------------
 ;; Misc
 ;;----------------------------------------------------------------------------
-(defalias 'yes-or-no-p 'y-or-n-p) ; y or n is enough
+(defalias 'yes-or-no-p 'y-or-n-p) ;; y or n is enough
 
 
 ;; ;; Customize Plus
@@ -113,7 +118,7 @@
 
 
 ;;----------------------------------------------------------------------------
-;;Custom key bindings
+;; Custom Key Bindings
 ;;----------------------------------------------------------------------------
 (global-set-key (kbd "<C-tab>") 'switch-to-previous-buffer)
 
@@ -147,6 +152,15 @@
   (defkbalias [mode-line C-mouse-8] [mode-line C-mouse-2])
   (defkbalias [mode-line mouse-8] [mode-line mouse-2]))
 
+(bind-keys :prefix-map endless/toggle-map
+		   :prefix "C-c t"
+		   ("a" . auto-complete-mode)
+		   ("c" . flycheck-mode)
+		   ("d" . toggle-debug-on-error)
+		   ("f" . auto-fill-mode)
+		   ("h" . hungry-delete-mode)
+		   ("i" . aggressive-indent-mode)
+		   ("w" . whitespace-mode))
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
@@ -160,8 +174,8 @@
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
 (setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
-;;(setq-default custom-file (concat user-emacs-directory "custom-" (user-login-name) ".el")
-(load custom-file)
+(if (file-exists-p custom-file)
+	(load custom-file))
 
 
 ;;----------------------------------------------------------------------------

@@ -135,8 +135,8 @@ Call a second time to restore the original window configuration."
   (split-window)
   (switch-to-buffer "*scratch*"))
 
-(global-set-key (kbd "<C-insert>") '(switch-to-scratch-buffer))
-(global-set-key (kbd "<C-H-Help>") '(switch-to-scratch-buffer))
+(global-set-key (kbd "<C-insert>") 'switch-to-scratch-buffer)
+(global-set-key (kbd "<C-H-Help>") 'switch-to-scratch-buffer)
 
 ;; Switch to previous buffer
 (defun switch-to-previous-buffer()
