@@ -65,7 +65,34 @@
 ;;----------------------------------------------------------------------------
 ;; Copy, Cut & Paste
 ;;----------------------------------------------------------------------------
-(use-package xclip :ensure t)
+;; handle copy/paste intelligently
+(defun copy-from-osx ()
+  "Handle copy/paste intelligently on osx."
+  (let ((tramp-mode nil)
+        (default-directory "~"))
+    (shell-command-to-string "/usr/bin/pbpaste")))
+
+(defun paste-to-osx (text &optional push)
+  "Handle copy/paste intelligently on osx.
+TEXT gets put into the Macosx clipboard.
+
+The PUSH argument is ignored."
+  (let* ((process-connection-type nil)
+         (proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+    (process-send-string proc text)
+    (process-send-eof proc)))
+
+(define-minor-mode pbcopy-pbpaste-mode
+  "Toggle pbcopy-pbpaste mode"
+  :init-value *is-a-mac*
+  :global t
+  (cond
+   ((and *is-a-mac* pbcopy-pbpaste-mode) ; pbcopy-pbpaste-mode on
+    (setq interprogram-cut-function 'paste-to-osx
+          interprogram-paste-function 'copy-from-osx))
+   (t					; pbcopy-pbpaste-mode off
+    (setq interprogram-cut-function nil
+          interprogram-paste-function nil))))
 
 ;; Use the kill-ring for copy/paste
 (setq mouse-drag-copy-region t)

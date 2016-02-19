@@ -144,7 +144,6 @@
   (setq mac-command-key-is-meta t)
   (setq mac-command-modifier 'meta)
   (setq mac-option-modifier nil)
-  (turn-on-xclip)
   (defkbalias (kbd "<mouse-8>") (kbd "<mouse-2>"))
   (global-set-key (kbd "<M-mouse-8>") 'mouse-yank-primary)
   (defkbalias (kbd "<C-down-mouse-8>") (kbd "<C-down-mouse-2>"))
