@@ -24,8 +24,6 @@
 
 ;;; Code:
 
-(setq tramp-auto-save-directory
-	  (expand-file-name "auto-save" user-emacs-directory))
 
 (provide 'init-tramp)
 ;;; init-tramp.el ends here

@@ -81,6 +81,7 @@
 (require 'init-go)
 (require 'init-other-modes)
 
+(require 'init-backup)
 (require 'init-edition)
 (require 'init-autoinsert)
 (require 'init-indent)
