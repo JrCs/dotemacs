@@ -28,7 +28,12 @@
 (defvar backup-directory (expand-file-name "backups" user-emacs-directory))
 (if (not (file-exists-p backup-directory))
 	(make-directory backup-directory t))
-(setq backup-directory-alist `(("." . ,backup-directory)))
+
+(setq backup-directory-alist
+      (quote
+       (("recentf$" . "nil")
+        ("." . "/Users/yves/.emacs.d/backups"))))
+
 (setq make-backup-files t               ; backup of a file the first time it is saved.
       backup-by-copying t               ; don't clobber symlinks
       version-control t                 ; version numbers for backup files
