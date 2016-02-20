@@ -158,6 +158,7 @@
 		   ("c" . flycheck-mode)
 		   ("d" . toggle-debug-on-error)
 		   ("f" . auto-fill-mode)
+		   ("g" . aggressive-indent-mode)
 		   ("h" . hungry-delete-mode)
 		   ("i" . aggressive-indent-mode)
 		   ("w" . whitespace-mode))
