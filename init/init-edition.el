@@ -45,12 +45,21 @@
 ;; Parens mode
 ;;----------------------------------------------------------------------------
 ;; Visualization of matching parens
-(use-package paren
-  :init
-  (show-paren-mode t)
-  (setq-default
-   show-paren-style (quote mixed)))
+(use-package mic-paren
+  :ensure t
+  :defer 2
+  :config
+  (paren-activate))
+;; (use-package paren
+;;   :init
+;;   (show-paren-mode t)
+;;   (setq-default
+;;    show-paren-style (quote mixed)))
 
+;;----------------------------------------------------------------------------
+;; Redo mode
+;;----------------------------------------------------------------------------
+;; Visualization of matching parens
 (use-package redo+
   :ensure t
   :init
@@ -101,6 +110,7 @@ The PUSH argument is ignored."
 (defun yank-pop-forwards (arg)
   (interactive "p")
   (yank-pop (- arg)))
+
 (global-set-key "\M-Y" 'yank-pop-forwards) ; M-Y (Meta-Shift-Y)
 
 
@@ -133,7 +143,6 @@ The PUSH argument is ignored."
   :init
   (bind-key "C-c g" #'goto-line)
   (global-set-key [remap goto-line] 'goto-line-with-feedback))
-
 
 
 (global-set-key "\C-t" #'transpose-lines)

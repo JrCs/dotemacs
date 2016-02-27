@@ -77,8 +77,13 @@
  '(isearch-fail ((t (:background "firebrick1"))))
  '(lazy-highlight ((t (:background "blue" :foreground "white"))))
  '(match ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "RoyalBlue3")) (((class color) (min-colors 8) (background light)) (:foreground "black" :background "yellow")) (((class color) (min-colors 8) (background dark)) (:foreground "white" :background "blue")) (((type tty) (class mono)) (:inverse-video t)) (t (:background "gray"))))
+ ;; paren
  '(show-paren-match ((t (:background "blue"))))
  '(show-paren-mismatch ((t (:background "dark magenta" :foreground "white"))))
+ ;; mic-paren
+ '(paren-face-match ((t (:inherit show-paren-match))))
+ '(paren-face-mismatch ((t (:inherit show-paren-mismatch))))
+ ;;
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
  '(default ((t (:inherit nil :stipple nil :background "#004444" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :family "Fixed"))))
