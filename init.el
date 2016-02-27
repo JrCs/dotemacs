@@ -84,6 +84,7 @@
 
 (require 'init-backup)
 (require 'init-edition)
+(require 'init-git)
 (require 'init-autoinsert)
 (require 'init-indent)
 (require 'init-tramp)
