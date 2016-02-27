@@ -29,6 +29,8 @@
 ;;----------------------------------------------------------------------------
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message "yves") ; see customization
+(setq-default initial-scratch-message
+              (concat ";;\n;; Happy hacking, " user-login-name " - Emacs ♥ you!\n;;\n\n"))
 
 
 ;;----------------------------------------------------------------------------
@@ -137,6 +139,7 @@ Call a second time to restore the original window configuration."
 
 (global-set-key (kbd "<C-insert>") 'switch-to-scratch-buffer)
 (global-set-key (kbd "<C-H-Help>") 'switch-to-scratch-buffer)
+(global-set-key (kbd "<C-f13>") 'switch-to-scratch-buffer)
 
 ;; Switch to previous buffer
 (defun switch-to-previous-buffer()

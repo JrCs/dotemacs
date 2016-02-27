@@ -1,6 +1,7 @@
 ;;; -*- coding: utf-8 -*-
 ;;; init.el --- My init file
-;;; Commentary: see https://github.com/fgeller/emacs-init
+;;; Commentary: see https://github.com/purcell/emacs.d
+;;;             and https://github.com/jwiegley/dot-emacs
 ;;; Code:
 ;;;
 
