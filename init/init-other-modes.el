@@ -53,6 +53,7 @@
 ;;----------------------------------------------------------------------------
 (use-package markdown-mode
   :ensure t
+  :mode (("\\bREADME\\.md\\'" . gfm-mode))
   :config
   (use-package markdown-preview-eww :ensure t))
 
