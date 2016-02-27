@@ -113,6 +113,29 @@ The PUSH argument is ignored."
   :init
   (global-hungry-delete-mode))
 
+;;----------------------------------------------------------------------------
+;; nlinum mode
+;;----------------------------------------------------------------------------
+(use-package nlinum
+  :ensure t
+  :preface
+  (defun goto-line-with-feedback ()
+    "Show line numbers temporarily, while prompting for the line number input"
+    (interactive)
+    (unwind-protect
+        (progn
+          (nlinum-mode 1)
+          (let ((num (read-number "Goto line: ")))
+            (goto-char (point-min))
+            (forward-line (1- num))))
+      (nlinum-mode -1)))
+
+  :init
+  (bind-key "C-c g" #'goto-line)
+  (global-set-key [remap goto-line] 'goto-line-with-feedback))
+
+
+
 (global-set-key "\C-t" #'transpose-lines)
 
 (provide 'init-edition)

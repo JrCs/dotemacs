@@ -162,6 +162,7 @@
 		   ("f" . auto-fill-mode)
 		   ("g" . aggressive-indent-mode)
 		   ("h" . hungry-delete-mode)
+		   ("l" . nlinum-mode)
 		   ("i" . aggressive-indent-mode)
 		   ("w" . whitespace-mode))
 
