@@ -47,7 +47,6 @@
 				  (message "init completed in %.2fms"
 						   (sanityinc/time-subtract-millis after-init-time before-init-time))))))
 
-
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
@@ -89,9 +88,9 @@
 (require 'init-indent)
 (require 'init-tramp)
 
+(require 'init-modeline)
 (require 'init-theme)
 (require 'init-fonts)
-(require 'init-modeline)
 (require 'init-windows)
 (require 'init-gui-frames)
 (require 'init-session)
