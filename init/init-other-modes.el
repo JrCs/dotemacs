@@ -37,10 +37,12 @@
 ;;----------------------------------------------------------------------------
 (use-package json-mode :ensure t)
 
+
 ;;----------------------------------------------------------------------------
 ;; YAML mode
 ;;----------------------------------------------------------------------------
 (use-package yaml-mode :ensure t)
+
 
 ;;----------------------------------------------------------------------------
 ;; Dockerfile mode
@@ -57,6 +59,15 @@
   :config
   (use-package markdown-preview-eww :ensure t))
 
+
+;;----------------------------------------------------------------------------
+;; Lisp mode
+;;----------------------------------------------------------------------------
+;; could be bad, will not let you save at all, until you correct the error
+(add-hook 'emacs-lisp-mode-hook
+          (function (lambda ()
+                      (add-hook 'local-write-file-hooks 
+                                'check-parens))))
 
 (provide 'init-other-modes)
 ;;; init-other-modes.el ends here
