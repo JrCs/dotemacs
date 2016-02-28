@@ -86,6 +86,7 @@
 (require 'init-git)
 (require 'init-autoinsert)
 (require 'init-indent)
+(require 'init-whitespace)
 (require 'init-tramp)
 
 (require 'init-modeline)
@@ -106,11 +107,6 @@
 ;; (require 'cus-edit+)
 ;; (customize-toggle-outside-change-updates 99)
 ;;
-
-;;----------------------------------------------------------------------------
-;; Whitespace mode
-;;----------------------------------------------------------------------------
-(global-set-key "\C-cw" 'whitespace-mode)
 
 
 ;;----------------------------------------------------------------------------
