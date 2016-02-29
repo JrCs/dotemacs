@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Yves Blusseau
 
 ;; Author: Yves Blusseau <90z7oey02@sneakemail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -39,12 +39,13 @@
   :config
   (global-aggressive-indent-mode 1)
   (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'perl-mode)
   (add-to-list
    'aggressive-indent-dont-indent-if
    '(and (or (derived-mode-p 'c-mode)
-	 (derived-mode-p 'c++-mode))
-         (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
-		     (thing-at-point 'line))))))
+			 (derived-mode-p 'c++-mode))
+		 (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+							 (thing-at-point 'line))))))
 
 
 ;;-----------------------------------------------------------------------------
