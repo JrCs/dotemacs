@@ -34,7 +34,7 @@
  '(ido-only-match ((default (:inherit (ido-first-match)))))
  '(ido-subdir ((t (:foreground "goldenrod1"))))
  '(js2-error ((t (:inherit error))))
- '(js2-function-param ((t (:foreground "turquoise")))) 
+ '(js2-function-param ((t (:foreground "turquoise"))))
  '(moccur-current-line-face ((t (:underline "LightSalmon1"))))
  '(moccur-edit-done-face ((t (:foreground "gray65"))))
  '(moccur-edit-file-face ((t (:background "gray30"))))
