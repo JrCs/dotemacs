@@ -32,6 +32,13 @@
 (setq-default initial-scratch-message
               (concat ";;\n;; Happy hacking, " user-login-name " - Emacs ♥ you!\n;;\n\n"))
 
+
+;;----------------------------------------------------------------------------
+;; Change the threshold to choose how to split windows
+;;----------------------------------------------------------------------------
+(setq split-width-threshold 120)
+(setq split-height-threshold 90)
+
 
 ;;----------------------------------------------------------------------------
 ;; Navigate window layouts with "C-c <left>" and "C-c <right>"
