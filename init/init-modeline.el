@@ -33,15 +33,16 @@
   :ensure spaceline
   :config
 
-  (spaceline-define-segment my-buffer-encoding
-	"My buffer encoding."
+  (spaceline-define-segment buffer-encoding-pretty
+	"Pretty segment for full buffer encoding."
 	(let ((buf-coding (format "%s" buffer-file-coding-system)))
 	  (if (string-match "\\(.+\\)-\\(dos\\|unix\\|mac\\)" buf-coding)
-		  (concat
-		   (replace-regexp-in-string "\\(iso\\|prefer\\)-" "" (match-string 1 buf-coding))
-		   " ("
-		   (match-string 2 buf-coding)
-		   ")")
+		  (let ((file-type (match-string 2 buf-coding))
+				(file-encoding
+				 (replace-regexp-in-string "\\(iso\\|prefer\\)-" "" (match-string 1 buf-coding))))
+			(concat file-encoding
+					(if (not (string= "unix" file-type))
+						(concat " (" file-type ")"))))
 		buf-coding)))
 
   (spaceline-install
@@ -71,13 +72,14 @@
 	 (battery :when active)
 	 selection-info
 	 input-method
-	 my-buffer-encoding
+	 buffer-encoding-pretty
 	 (( point-position
 		buffer-size)
 	  :separator " | ")
 	 (global :when active)
 	 buffer-position
 	 hud))
+
   (setq spaceline-highlight-face-func 'spaceline-highlight-face-modified
 		powerline-default-separator 'curve))
 
