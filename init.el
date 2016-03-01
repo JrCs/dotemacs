@@ -67,6 +67,7 @@
 ;;----------------------------------------------------------------------------
 (require 'init-frame-hooks)
 (require 'init-ibuffer)
+(require 'init-backup)
 (require 'init-ido)
 (require 'init-recentf)
 
@@ -81,7 +82,6 @@
 (require 'init-go)
 (require 'init-other-modes)
 
-(require 'init-backup)
 (require 'init-edition)
 (require 'init-git)
 (require 'init-autoinsert)

@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Yves Blusseau
 
 ;; Author: Yves Blusseau <90z7oey02@sneakemail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -30,19 +30,19 @@
 (use-package ido
   :demand t
   :defines (ido-cur-item
-            ido-require-match
-            ido-selected
-            ido-final-text
-            ido-show-confirm-message)
+			ido-require-match
+			ido-selected
+			ido-final-text
+			ido-show-confirm-message)
   :bind (("C-x b" . ido-switch-buffer)
-         ("C-x B" . ido-switch-buffer-other-window))
+		 ("C-x B" . ido-switch-buffer-other-window))
   :preface
   (eval-when-compile
-    (defvar ido-require-match)
-    (defvar ido-cur-item)
-    (defvar ido-show-confirm-message)
-    (defvar ido-selected)
-    (defvar ido-final-text))
+	(defvar ido-require-match)
+	(defvar ido-cur-item)
+	(defvar ido-show-confirm-message)
+	(defvar ido-selected)
+	(defvar ido-final-text))
 
   :config
   (setq-default
@@ -52,14 +52,16 @@
    ido-use-filename-at-point nil
    ido-use-virtual-buffers t
    )
+  (add-to-list 'backup-directory-alist
+			   (cons (expand-file-name ido-save-directory-list-file) nil))
   (ido-mode 'both)
-  
+
   (use-package ido-ubiquitous
 	:ensure t
 	:config
 	(ido-ubiquitous-mode t)
+	)
   )
-)
 
 ;;;; Display ido results vertically, rather than horizontally
 ;;;;(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))

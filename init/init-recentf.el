@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Yves Blusseau
 
 ;; Author: Yves Blusseau <90z7oey02@sneakemail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,29 +20,30 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 (use-package recentf
   :defer 10
   :commands (recentf-mode
-             recentf-add-file
-             recentf-apply-filename-handlers
+			 recentf-add-file
+			 recentf-apply-filename-handlers
 			 recentf-ido-find-file)
   :bind ("C-x C-r" . recentf-ido-find-file)
   :preface
   (defun recentf-add-dired-directory ()
-    (if (and dired-directory
-             (file-directory-p dired-directory)
-             (not (string= "/" dired-directory)))
-        (let ((last-idx (1- (length dired-directory))))
-          (recentf-add-file
-           (if (= ?/ (aref dired-directory last-idx))
-               (substring dired-directory 0 last-idx)
-             dired-directory)))))
+	(if (and dired-directory
+			 (file-directory-p dired-directory)
+			 (not (string= "/" dired-directory)))
+		(let ((last-idx (1- (length dired-directory))))
+		  (recentf-add-file
+		   (if (= ?/ (aref dired-directory last-idx))
+			   (substring dired-directory 0 last-idx)
+			 dired-directory)))))
   :init
   (add-hook 'dired-mode-hook 'recentf-add-dired-directory)
+  (setq-default recentf-max-saved-items 200)
 
   :config
   (defun recentf-ido-find-file ()
@@ -52,9 +53,10 @@
 	  (when file
 		(find-file file))))
 
-  (setq-default
-   recentf-max-saved-items 200)
+  (add-to-list 'backup-directory-alist
+			   (cons (expand-file-name recentf-save-file) nil))
+
   (recentf-mode 1))
 
-(provide 'init-recentf)
+  (provide 'init-recentf)
 ;;; init-recentf.el ends here
