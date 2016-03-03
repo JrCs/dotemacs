@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016  Yves Blusseau
 
 ;; Author: Yves Blusseau <90z7oey02@sneakemail.com>
-;; Keywords: 
+;; Keywords:
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -29,7 +29,8 @@
   :defer t
   :config
   (add-hook 'before-save-hook #'gofmt-before-save)
-  
+  (add-hook 'go-mode-hook (lambda ()
+							(local-set-key (kbd "M-.") #'godef-jump)))
   (use-package go-autocomplete :ensure t)
   (use-package go-direx
 	:ensure t
