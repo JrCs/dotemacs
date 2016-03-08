@@ -43,7 +43,16 @@
   (global-set-key "\M-n" '(lambda()
 							(interactive)
 							(progn (force-flycheck-mode)
-								   (flycheck-next-error)))))
+								   (flycheck-next-error))))
+
+  (use-package flycheck-gometalinter
+	:ensure t
+	:config
+	(progn
+	  (flycheck-gometalinter-setup))
+	(setq
+	 ;; Set different deadline (default: 5s)
+	 flycheck-gometalinter-deadline "10s")))
 
 
 (provide 'init-flycheck)
