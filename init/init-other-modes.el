@@ -29,7 +29,11 @@
 ;;----------------------------------------------------------------------------
 (use-package rpm-spec-mode
   :ensure t
-  :mode ("\\.spec\\(\\.in\\)?$" . rpm-spec-mode))
+  :mode ("\\.spec\\(\\.in\\|\\.tm?pl\\)?$" . rpm-spec-mode)
+  :config
+  (add-hook 'rpm-spec-mode-hook
+            #'(lambda ()
+                (hungry-delete-mode -1)))) ; disable hungry mode
 
 
 ;;----------------------------------------------------------------------------
