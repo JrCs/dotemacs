@@ -38,8 +38,8 @@
 ;; Electric Pair mode is a global minor mode.  When enabled, typing
 ;; an open parenthesis automatically inserts the corresponding
 ;; closing parenthesis.  (Likewise for brackets, etc.).
-(use-package elec-pair
-  :init (electric-pair-mode t))
+;;(use-package elec-pair
+;;  :init (electric-pair-mode t))
 
 ;;----------------------------------------------------------------------------
 ;; Parens mode

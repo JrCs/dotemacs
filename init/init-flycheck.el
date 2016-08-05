@@ -52,7 +52,9 @@
 	  (flycheck-gometalinter-setup))
 	(setq
 	 ;; Set different deadline (default: 5s)
-	 flycheck-gometalinter-deadline "10s")))
+	 flycheck-gometalinter-deadline "15s"
+	 ;; Enable vendoring support
+	 flycheck-gometalinter-vendor t)))
 
 
 (provide 'init-flycheck)

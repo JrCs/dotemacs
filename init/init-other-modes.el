@@ -51,7 +51,13 @@
 ;;----------------------------------------------------------------------------
 ;; Dockerfile mode
 ;;----------------------------------------------------------------------------
-(use-package dockerfile-mode :ensure t)
+(use-package dockerfile-mode
+  :ensure t
+  :config
+  (add-hook 'dockerfile-mode-hook
+            #'(lambda ()
+                (aggressive-indent-mode -1); disable agressive-indent mode
+                (hungry-delete-mode -1)))) ; disable hungry mode
 
 
 ;;----------------------------------------------------------------------------
@@ -70,8 +76,14 @@
 ;; could be bad, will not let you save at all, until you correct the error
 (add-hook 'emacs-lisp-mode-hook
           (function (lambda ()
-                      (add-hook 'local-write-file-hooks 
+                      (add-hook 'local-write-file-hooks
                                 'check-parens))))
+
+;;----------------------------------------------------------------------------
+;; Terraform mode
+;;----------------------------------------------------------------------------
+(use-package terraform-mode :ensure t)
+
 
 (provide 'init-other-modes)
 ;;; init-other-modes.el ends here

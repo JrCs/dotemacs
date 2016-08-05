@@ -75,7 +75,7 @@ file is whitespace cleanup on save"
 		(whitespace-cleanup))))
 
   :init
-  (add-hook 'find-file-hooks 'maybe-turn-on-whitespace t)
+  ;;(add-hook 'find-file-hooks 'maybe-turn-on-whitespace t)
   (global-set-key "\C-cn" #'normalize-file))
 
 
