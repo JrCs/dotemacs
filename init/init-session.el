@@ -38,6 +38,7 @@
 				  (extended-command-history . 30)
 				  (face-name-history        . 20)
 				  (file-name-history        . 100)
+				  (go-guru--scope-history   . 20)
 				  (grep-find-history        . 30)
 				  (grep-history             . 30)
 				  (magit-read-rev-history   . 50)

@@ -34,9 +34,10 @@
 			 lambda ()
 					;; Use goimports instead of go-fmt
 					(setq gofmt-command "goimports")
-					;; Go oracle
-					(load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
-					(local-set-key (kbd "M-.") #'godef-jump)))
+					(go-guru-hl-identifier-mode)
+					(local-set-key (kbd "M-.") #'godef-jump)
+					(local-set-key (kbd "M-*") #'pop-tag-mark)))
+  (use-package go-guru :ensure t)
   (use-package go-autocomplete :ensure t)
   (use-package go-direx
 	:ensure t
@@ -44,5 +45,5 @@
 	:init
 	(bind-key "C-c j" 'go-direx-pop-to-buffer go-mode-map)))
 
-(provide 'init-go)
+  (provide 'init-go)
 ;;; init-go.el ends here
