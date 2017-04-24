@@ -165,7 +165,7 @@
 		   ("g" . aggressive-indent-mode)
 		   ("h" . hungry-delete-mode)
 		   ("l" . nlinum-mode)
-		   ("i" . aggressive-indent-mode)
+		   ("r" . auto-revert-mode)
 		   ("w" . whitespace-mode))
 
 ;;----------------------------------------------------------------------------
